@@ -66,5 +66,5 @@ class FileStorage:
         '''
         if obj is not None:
             key = str(obj.__class__.__name__) + "." + str(obj.id)
-            FileStorage.__objects.pop(key, None)
+            FileStorage.__objects.pop(key)
             self.save()

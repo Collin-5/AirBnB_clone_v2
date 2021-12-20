@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -114,7 +114,14 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
+<<<<<<< HEAD
         """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
+=======
+        """
+            Create a new instance of class BaseModel and saves it
+            to the JSON file.
+        Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
+>>>>>>> fdbd70aef91e73b9a56715f65840c89ff154a18d
         Create a new class instance with given keys/values and print its id.
         """
         if not args:
@@ -131,18 +138,17 @@ class HBNBCommand(cmd.Cmd):
                         value = value.replace("_", " ")
                         try:
                             value = eval(value)
-                        except:
+                        except (NameError, SyntaxError):
                             pass
                         setattr(new_instance, key, value)
                 except (ValueError, IndexError):
                     pass
             new_instance.save()
             print(new_instance.id)
-        except:
+        except (NameError):
             print("** class doesn't exist **")
             return
 
-        
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
@@ -336,6 +342,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

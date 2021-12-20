@@ -114,10 +114,16 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
+<<<<<<< HEAD
         '''
             Create a new instance of class BaseModel and saves it
             to the JSON file.
         '''
+=======
+        """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
+        Create a new class instance with given keys/values and print its id.
+        """
+>>>>>>> d61be7ecab346b0edafb38fc0294d8959b394711
         if not args:
             print("** class name missing **")
             return
@@ -143,6 +149,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
+        
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")

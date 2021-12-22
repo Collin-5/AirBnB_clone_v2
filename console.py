@@ -115,8 +115,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """
-            Create a new instance of class BaseModel and saves it
-            to the JSON file.
+        Create a new instance of class BaseModel and saves it
+        to the JSON file.
         Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
         Create a new class instance with given keys/values and print its id.
         """

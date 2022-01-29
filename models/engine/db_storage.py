@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from models.state import State
 from models.city import City
 
+
 class DBStorage:
     """
     Create SQLAlchemy database
@@ -29,8 +30,9 @@ class DBStorage:
         db = getenv("HBNB_MYSQL_DB")
         env_var = ("HBNB_ENV", "none")
 
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-           user, pwd, db), pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
+                                      format(user, pwd, db),
+                                      pool_pre_ping=True)
         if env_var == "test":
             Base.metadata.drop_all(self.__engine)
 

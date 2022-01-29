@@ -17,10 +17,12 @@ def hello_hbnb():
     """display text"""
     return "Hello HBNB!"
 
+
 @app.route('/hbnb')
 def hbnb():
     """display text"""
     return "HBNB"
+
 
 @app.route('/c/<text>')
 def c_text(text):

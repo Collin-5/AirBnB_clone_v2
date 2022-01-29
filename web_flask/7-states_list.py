@@ -11,9 +11,10 @@ script starts Flask web app
             /number_odd_or_even/<n>: display HTML page; display odd/even info
             /states_list:         display HTML and state info from storage;
 """
-from models import storage
-from models import *
 from flask import Flask, render_template
+# from models import storage
+# from models import *
+import tests
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 

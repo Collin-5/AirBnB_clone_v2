@@ -9,8 +9,10 @@ script starts Flask web app
             /number/<n>:          display "n is a number" only if int
             /number_template/<n>: display HTML page only if n is int
             /number_odd_or_even/<n>: display HTML page; display odd/even info
+            /states_list:         display HTML and state info from storage;
 """
-
+from models import storage
+from models import *
 from flask import Flask, render_template
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -68,6 +70,22 @@ def html_odd_or_even(n):
     odd_or_even = "even" if (n % 2 == 0) else "odd"
     return render_template('6-number_odd_or_even.html',
                            n=n, odd_or_even=odd_or_even)
+
+
+@app.teardown_appcontext
+def tear_down(self):
+    """after each request remove current SQLAlchemy session"""
+    storage.close()
+
+
+@app.route('/states_list')
+def html_fetch_states():
+    """display html page
+       fetch sorted states to insert into html in UL tag
+    """
+    state_objs = [s for s in storage.all("State").values()]
+    return render_template('7-states_list.html',
+                           state_objs=state_objs)
 
 
 if __name__ == "__main__":

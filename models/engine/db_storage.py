@@ -11,6 +11,7 @@ from models.base_model import Base
 from sqlalchemy.orm import sessionmaker
 from models.state import State
 from models.city import City
+from models import classes
 
 
 class DBStorage:

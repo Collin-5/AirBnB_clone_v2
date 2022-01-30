@@ -11,10 +11,9 @@ script starts Flask web app
             /number_odd_or_even/<n>: display HTML page; display odd/even info
             /states_list:         display HTML and state info from storage;
 """
+from models import storage
+from models import classes
 from flask import Flask, render_template
-# from models import storage
-# from models import *
-import tests
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -79,14 +78,14 @@ def tear_down(self):
     storage.close()
 
 
-@app.route('/states_list')
-def html_fetch_states():
-    """display html page
-       fetch sorted states to insert into html in UL tag
+@app.route("/states_list")
+def states_list():
     """
-    state_objs = [s for s in storage.all("State").values()]
-    return render_template('7-states_list.html',
-                           state_objs=state_objs)
+    Displays HTML page with States
+    and a list of State objects in DBStorage
+    """
+    states = storage.all(classes["State"]).values()
+    return render_template("7-states_list.html", states=states)
 
 
 if __name__ == "__main__":

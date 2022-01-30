@@ -78,14 +78,14 @@ def tear_down(self):
     storage.close()
 
 
-@app.route("/states_list")
-def states_list():
+@app.route('/states_list')
+def html_fetch_states():
+    """display html page
+       fetch sorted states to insert into html in UL tag
     """
-    Displays HTML page with States
-    and a list of State objects in DBStorage
-    """
-    states = storage.all(classes["State"]).values()
-    return render_template("7-states_list.html", states=states)
+    state_objs = [s for s in storage.all("State").values()]
+    return render_template('7-states_list.html',
+                           state_objs=state_objs)
 
 
 if __name__ == "__main__":
